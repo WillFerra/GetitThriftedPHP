@@ -1,0 +1,121 @@
+.indexImg{
+    max-width: 75%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a{
+    font-family: Bebas;
+}
+
+p{
+    font-family: Bebas;
+}
+
+h2{
+    font-family: Bebas;
+}
+
+h4{
+    font-family: Bebas;
+}
+
+h5{
+    font-family: Bebas;
+}
+
+li p{
+    font-family: Bebas;
+}
+
+.centre{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th{
+    font-size: 70px;
+}
+
+td{
+    font-family: Bebas;
+    font-size: 15px;
+}
+
+table{
+    text-align: center;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+    flex: 50%;
+    max-width: 100%;
+    padding: 0 4px;
+}  
+
+.column img {
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+    .column {
+        flex: 50%;
+        max-width: 50%;
+    }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .column {
+        flex: 100%;
+        max-width: 100%;
+    }
+}
+
+.image-btn{
+    background: none;
+    border: none;
+    padding: 0;
+}
+.image-btn img{
+    display: block; /* to remove extra space below image */
+}
+
+.contact-form label, .contact-form input, .contact-form textarea{
+    display: block;
+    width: 100%;
+}
+
+.contact-form label{
+    margin-bottom: 0.5em;
+}
+
+.contact-form input, .contact-form textarea{
+    border: 1px solid #000000;
+    font-family: Bebas;
+    font-size: 1em;
+    padding: 0.5em;
+}
+
+label{
+    font-family: Bebas;
+}
+
+.btn{
+    font-family: Bebas !important;
+}
