@@ -80,3 +80,28 @@ function decreaseCount(a, b) {
         input.value = value;
     }
 }
+
+function toggleEditForm() {
+    var userDetails = document.getElementById("userDetails");
+    var editForm = document.getElementById("editForm");
+
+    if (userDetails.style.display === "none" || userDetails.style.display === "") {
+        userDetails.style.display = "block";
+        editForm.style.display = "none";
+    } else {
+        userDetails.style.display = "none";
+        editForm.style.display = "block";
+    }
+}
+
+function saveDetails() {
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var phone = document.getElementById("phone").value;
+
+    // Perform actions to save details (e.g., update the displayed details)
+    var userDetails = document.getElementById("userDetails");
+    userDetails.innerHTML = "<h2>User Details</h2><p>Name: " + name + "</p><p>Email: " + email + "</p><p>Phone: " + phone + "</p>";
+
+    toggleEditForm(); // Hide the edit form after saving
+}

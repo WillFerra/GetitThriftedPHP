@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get It Thrifted</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 
     <!-- Bootstrap CSS link -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -36,18 +36,30 @@
                 </div>
             </div>
 
-            <button type="button" class="btn">
-                <img src="assets/cart-shopping-solid.png" alt="Cart" width="20" height="auto">
-            </button>
+            <a href="cart.php">
+                <button type="button" class="btn">
+                    <img src="assets/cart-shopping-solid.png" alt="Cart" width="20" height="auto" href="cart.php">
+                </button>
+            </a>
 
-            <button type="button" class="btn">
-                <img src="assets/user-solid.png" alt="Cart" width="20" height="auto">
-            </button>
+            <div class="dropdown-center">
+                <a href="profile.php">
+                    <button type="button" class="btn">
+                        <img src="assets/user-solid.png" alt="User" width="20" height="auto" href="cart.php">
+                    </button>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="login.php">My Account</a></li>
+                    <li><a class="dropdown-item" href="#">Become a Seller</a></li>
+                </ul>
+            </div>
 
             <!-- Use justify content = space between in css -->
             <form class="d-flex"  role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <a href="products.php">
+                    <button type="button" class="btn btn-outline-success" type="submit">Search</button>
+                </a>
             </form>
         </div>
     </nav>

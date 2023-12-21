@@ -17,9 +17,13 @@
                 <th scope="col">
                     <img src="assets/truck-solid.png" alt="Cart" width="100" height="auto">
                 </th>
+                <th></th>
+                <th></th>
                 <th scope="col">
                     <img src="assets/comments-solid.png" alt="Cart" width="100" height="auto">
                 </th>
+                <th></th>
+                <th></th>
                 <th scope="col">
                     <img src="assets/rotate-left-solid.png" alt="Cart" width="80" height="auto">
                 </th>
@@ -33,7 +37,11 @@
             </tr>
             <tr>
                 <td>7 day delivery</td>
+                <td></td>
+                <td></td>
                 <td>Support</td>
+                <td></td>
+                <td></td>
                 <td>10 day return</td>
             </tr>
         </tbody>
@@ -41,8 +49,12 @@
             <tr>
                 <td>Your orders will never take more than a <br>
                     week to be delivered to your doorstep.</td>
+                <td></td>
+                <td></td>
                 <td>Our customer service team is available <br>
                     24/7 to answer any of your questions.</td>
+                <td></td>
+                <td></td>
                 <td>We offer a 10 day return policy. You can <br>
                     find more information here.</td>
             </tr>
