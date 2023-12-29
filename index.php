@@ -51,14 +51,19 @@
 <br>
 <br>
 
-<div class="container text-center">
+<div class="container">
     <div class="row">
         <div class="col align-self-center">
             <p>
-                Dive into the world of 'GET IT THRIFTED', where everyone is a seller and every item has a story to tell. 
-                Our platform celebrates the beauty of sustainable fashion and unique discoveries. Join our community of sellers, 
+                Dive into the world of <b>GET IT THRIFTED</b>, where everyone is a seller and every item has a story to tell. 
+                <br>
+                <br>
+                Our platform celebrates the beauty of <b>sustainable fashion</b> and <b>unique discoveries</b>. Join our community of sellers, 
                 each contributing to the charm with their pre-loved treasures. Whether you're a seasoned thrifter or a first-time seller, 
-                'Get it Thrifted' welcomes you to be a part of the circular economy. Embrace the joy of second chances, style with a story, 
+                'Get it Thrifted' welcomes you to be a part of the circular economy. 
+                <br>
+                <br>
+                Embrace the joy of second chances, style with a story, 
                 and make your mark in the vibrant tapestry of our thrift-loving community.
             </p>
         </div>

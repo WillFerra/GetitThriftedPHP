@@ -13,15 +13,19 @@
 </head>
 
 <body>
-
     <style>
         @font-face {
             font-family: Bebas;
             src: url(assets/Montserrat-Regular.ttf);
         }
+
+        body {
+            padding-top: 50px;
+            padding-bottom: 100px;
+        }
     </style>
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
         <div class="container-fluid">
             <img src="assets/logo.png" alt="Logo" width="70" height="50" class="d-inline-block align-text-top">
             <a class="navbar-brand" href="index.php">Get It Thrifted</a>
@@ -49,7 +53,7 @@
                     </button>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="login.php">My Account</a></li>
+                    <li><a class="dropdown-item" href="login.php">Login/ Signup</a></li>
                     <li><a class="dropdown-item" href="#">Become a Seller</a></li>
                 </ul>
             </div>

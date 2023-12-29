@@ -1,15 +1,11 @@
-
-<div class="row bg-custom text-light">
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    &copy; Will &vert; 2023
-                </div>
-            </div>
+<footer class="container-fluid bg-light border-top border-secondary p-4 fixed-bottom">
+    <div class="row">
+        <div class="col-12">
+            <h4>&copy; Get It Thrifted | An Ever growing community</h4>
         </div>
-    </footer>
-</div>
+    </div>
+</footer>
+
 
 <script src="scripts.js"></script>
 
