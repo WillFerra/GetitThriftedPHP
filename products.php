@@ -1,99 +1,39 @@
-<?php
-    include 'includes/header.php';
+<?php 
+    require_once "includes/dbh.php";
+    require_once "includes/db-functions.php";
+    
+    include "includes/header.php";
+
+
+    $products = loadAllProducts($conn);
+
+    session_start();
+
 ?>
 
 <br>
 <br>
 
-<div class="col-12">
-        <main>
-            <div class="container">
-                <div class="row mb-4">
-                    <div class="col-4">
-                        <div class="card">
-                            <img src="assets/thrift1.jpg.webp" class="card-img-top" alt="Checked Shirt">
-                            <div class="card-body">
-                                <h5 class="card-title">Checked Shirt</h5>
-                                <p class="card-text">&euro; 24.00</p>
-                            </div>
-                            <div class="card-body">
-                                <a href="productItem.php" class="btn btn-primary">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-4">
-                        <div class="card">
-                            <img src="assets/thrift2.heic.webp" class="card-img-top" alt="Zip-Up Navy Blue">
-                            <div class="card-body">
-                                <h5 class="card-title">Zip-Up Navy Blue</h5>
-                                <p class="card-text">&euro; 45.00</p>
-                            </div>
-                            <div class="card-body">
-                                <a href="productItem.php" class="btn btn-primary">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-4">
-                        <div class="card">
-                            <img src="assets/thrift3.heic.webp" class="card-img-top" alt="Sweatshirt Grey">
-                            <div class="card-body">
-                                <h5 class="card-title">Sweatshirt Grey</h5>
-                                <p class="card-text">&euro; 48.00</p>
-                            </div>
-                            <div class="card-body">
-                                <a href="productItem.php" class="btn btn-primary">View Details</a>
-                            </div>
+<div class="container mt-3">
+    <div class="row">
+        <?php 
+            foreach($products as $prod):
+                ?>
+                <div class="col-4 mb-3">
+                    <div class="card">
+                        <img src="<?php echo $prod["imgLink"];?>" alt="Product Image">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $prod["name"]?></h5>
+                            <h6 class="card-subtitle mb-2 text-muted"><?php echo "€ ".$prod["price"];?></h6>
+                            <a href="productItem.php?product=<?php echo $prod["id"] ;?>" class="btn btn-primary" role="button">View Details</a>
                         </div>
                     </div>
                 </div>
-
-                <div class="row mb-4">
-                    <div class="col-4">
-                        <div class="card">
-                            <img src="assets/thrift4.heic.webp" class="card-img-top" alt="Heavy Jacket in Green">
-                            <div class="card-body">
-                                <h5 class="card-title">Heavy Jacket in Green</h5>
-                                <p class="card-text">&euro; 150.00</p>
-                            </div>
-                            <div class="card-body">
-                                <a href="productItem.php" class="btn btn-primary">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-4">
-                        <div class="card">
-                            <img src="assets/thrift5.heic.webp" class="card-img-top" alt="Verapelle with fur interior">
-                            <div class="card-body">
-                                <h5 class="card-title">Verapelle with fur interior</h5>
-                                <p class="card-text">&euro; 75.00</p>
-                            </div>
-                            <div class="card-body">
-                                <a href="productItem.php" class="btn btn-primary">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-4">
-                        <div class="card">
-                            <img src="assets/thrift6.heic.webp" class="card-img-top" alt="Corduroy Jacket in Brown">
-                            <div class="card-body">
-                                <h5 class="card-title">Corduroy Jacket in Brown</h5>
-                                <p class="card-text">&euro; 60.00</p>
-                            </div>
-                            <div class="card-body">
-                                <a href="productItem.php" class="btn btn-primary">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
+                <?php
+            endforeach;
+        ?>
     </div>
-
-
+</div>
 
 <?php
     include 'includes/footer.php';

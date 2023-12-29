@@ -10,56 +10,42 @@
 <br>
 <br>
 
-<div>
-    <table style="width:50%" class="centre">
-        <thead>
-            <tr>
-                <th scope="col">
-                    <img src="assets/truck-solid.png" alt="Cart" width="100" height="auto">
-                </th>
-                <th></th>
-                <th></th>
-                <th scope="col">
-                    <img src="assets/comments-solid.png" alt="Cart" width="100" height="auto">
-                </th>
-                <th></th>
-                <th></th>
-                <th scope="col">
-                    <img src="assets/rotate-left-solid.png" alt="Cart" width="80" height="auto">
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>7 day delivery</td>
-                <td></td>
-                <td></td>
-                <td>Support</td>
-                <td></td>
-                <td></td>
-                <td>10 day return</td>
-            </tr>
-        </tbody>
-        <tbody>
-            <tr>
-                <td>Your orders will never take more than a <br>
-                    week to be delivered to your doorstep.</td>
-                <td></td>
-                <td></td>
-                <td>Our customer service team is available <br>
-                    24/7 to answer any of your questions.</td>
-                <td></td>
-                <td></td>
-                <td>We offer a 10 day return policy. You can <br>
-                    find more information here.</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="container">
+    <div class="row">
+        <div class="col-4 mb-3 d-flex justify-content-center align-items-center">
+            <img src="assets/truck-solid.png" alt="Cart" width="100" height="auto">
+        </div>
+        <div class="col-4 mb-3 d-flex justify-content-center align-items-center">
+            <img src="assets/comments-solid.png" alt="Cart" width="100" height="auto">
+        </div>
+        <div class="col-4 mb-3 d-flex justify-content-center align-items-center">
+            <img src="assets/rotate-left-solid.png" alt="Cart" width="80" height="auto">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4 mb-3 d-flex justify-content-center align-items-center">
+            <h4>7 day Delivery</h4>
+        </div>
+        <div class="col-4 mb-3 d-flex justify-content-center align-items-center">
+            <h4>Support</h4>
+        </div>
+        <div class="col-4 mb-3 d-flex justify-content-center align-items-center">
+            <h4>10 day Return</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4 mb-3 text-center">
+            <p>Your orders will never take more than a week to be delivered right to your doorstep</p>
+        </div>
+        <div class="col-4 mb-3 text-center">
+            <p>Our customer service team is available 24/7 to answer your questions.</p>
+        </div>
+        <div class="col-4 mb-3 text-center">
+            <p>We offer a 10 day return policy with a money back gurantee</p>
+        </div>
+    </div>
 </div>
 
 <br>
@@ -69,10 +55,11 @@
     <div class="row">
         <div class="col align-self-center">
             <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis, <br>
-                expedita accusamus. Vel voluptatum ipsum iure accusamus sapiente <br>
-                perspiciatis debitis. Aliquam saepe tempora et earum nemo deserunt <br>
-                necessitatibus laudantium eius ad.
+                Dive into the world of 'GET IT THRIFTED', where everyone is a seller and every item has a story to tell. 
+                Our platform celebrates the beauty of sustainable fashion and unique discoveries. Join our community of sellers, 
+                each contributing to the charm with their pre-loved treasures. Whether you're a seasoned thrifter or a first-time seller, 
+                'Get it Thrifted' welcomes you to be a part of the circular economy. Embrace the joy of second chances, style with a story, 
+                and make your mark in the vibrant tapestry of our thrift-loving community.
             </p>
         </div>
         <div class="col">

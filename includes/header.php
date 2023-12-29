@@ -17,7 +17,7 @@
     <style>
         @font-face {
             font-family: Bebas;
-            src: url(assets/Bebas-Regular.otf);
+            src: url(assets/Montserrat-Regular.ttf);
         }
     </style>
 

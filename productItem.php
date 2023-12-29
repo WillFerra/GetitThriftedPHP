@@ -1,43 +1,71 @@
-<?php
-    include 'includes/header.php';
+<?php 
+    require_once "includes/dbh.php";
+    require_once "includes/db-functions.php";
+    
+    include "includes/header.php";
+
+    if(isset($_GET["product"])){
+        $productId = $_GET["product"];
+
+        if(!loadProduct($conn, $productId)){
+            header("location:index.php");
+            exit();
+        }
+
+        $product = loadProduct($conn, $productId);
+    }
 ?>
 
 <br>
 <br>
 
-<!-- Creating the carousel with the images -->
-
-<div class="container-fluid">
+<div class="container mt-3">
     <div class="row">
-        <div class="col-6">
-            <img src="assets/thrift1.jpg.webp" class="d-block w-100" alt="Checked Shirt">
+        <div class="col-5">
+            <div class="border p-3 mb-3">
+                <div>
+                    <img src="<?php echo $product["imgLink"];?>" alt="Product Image" class="img-fluid">
+                </div>
+            </div>
         </div>
-        
-        <!-- list with the details of the product -->
-        
-        <div class="col-6">
-            <h2> CARHARTT checked shirt in Blue </h2>
-            <br>
-            <h4 class="card-text">&euro; 24.00</h4>
-            <br>
             
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <p>
-                        Size XL
-                    </p>
-                </li>
+        <div class="col-lg-7 col-md-12">
+            <div class="border p-3 mb-3">
+                <h1><?php echo $product["name"]?></h1>
+                <h3><?php echo $product["description"]?></h3>
+                <br>
+                <br>
+                <h5><?php echo "Price: € ".$product["price"]?></h5>
+                <br>
+                <h5><?php echo "Size: ".$product["sizeId"]?></h5>
+                <br>
+                <h5><?php echo "Quantity in Stock: ".$product["stockQty"]?></h5>
+            </div>
 
-                <li class="list-group-item">
-                    <p>
-                        1 Item in Stock
-                    </p>
-                </li>
-            </ul>
-            
-            <br>
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <!-- Button -->
+                    <button type="submit" class="btn btn-primary w-100 p-2 fs-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Add to Cart
+                    </button>
 
-            <button type="button" class="btn btn-dark w-100">Add to Cart</button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Item Successfully Added to Cart</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-footer">
+                            <button onclick="location.href='products.php'" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continue Shopping</button>
+                            <button onclick="location.href='cart.php'" type="button" class="btn btn-primary">Go to Cart</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
