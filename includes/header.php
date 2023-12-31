@@ -47,13 +47,13 @@
             </a>
 
             <div class="dropdown-center">
-                <a href="profile.php">
+                <a>
                     <button type="button" class="btn">
-                        <img src="assets/user-solid.png" alt="User" width="20" height="auto" href="cart.php">
+                        <img src="assets/user-solid.png" alt="User" width="20" height="auto">
                     </button>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="login.php">Login/ Signup</a></li>
+                    <li><a class="dropdown-item" href="profile.php">My Account</a></li>
                     <li><a class="dropdown-item" href="#">Become a Seller</a></li>
                 </ul>
             </div>

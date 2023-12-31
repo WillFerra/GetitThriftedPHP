@@ -30,37 +30,37 @@
                     <h3>Personal Details</h3>
 
                     <div class="form-floating mb-3">
-                        <input type="input" class="form-control" id="name" name="name" >
+                        <input type="input" class="form-control" id="name" name="name" required>
                         <label for="name">First Name</label>
                     </div>
                     
                     <div class="form-floating mb-3">
-                        <input type="input" class="form-control" id="surname" name="surname" >
+                        <input type="input" class="form-control" id="surname" name="surname"required>
                         <label for="surname">Surname</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="input" class="form-control" id="doB" name="doB" >
+                        <input type="input" class="form-control" id="doB" name="doB" required>
                         <label for="doB">Date of Birth</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="email" name="email" >
+                        <input type="email" class="form-control" id="email" name="email" required>
                         <label for="email">Email</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="input" class="form-control" id="username" name="username" >
+                        <input type="input" class="form-control" id="username" name="username" required>
                         <label for="username">Username</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="password" name="password" >
+                        <input type="password" class="form-control" id="password" name="password" required>
                         <label for="password">Password</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="confPassword" name="confPassword" >
+                        <input type="password" class="form-control" id="confPassword" name="confPassword" required>
                         <label for="confPassword">Confirm Password</label>
                     </div>
 
@@ -73,17 +73,17 @@
                     <h3>Residence</h3>
 
                     <div class="form-floating mb-3">
-                        <input type="input" class="form-control" id="address" name="address" >
+                        <input type="input" class="form-control" id="address" name="address"required>
                         <label for="address">Address</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="input" class="form-control" id="street" name="street" >
+                        <input type="input" class="form-control" id="street" name="street" required>
                         <label for="street">Street</label>
                     </div>
 
                     <div class="mb-3">
-                        <select class="form-select" id="town" name="town" >
+                        <select class="form-select" id="town" name="town" required>
                             <option disabled selected>Town</option>
                             <?php 
                                 foreach($town as $row):
@@ -96,7 +96,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <select class="form-select" id="country" name="country" >
+                        <select class="form-select" id="country" name="country" required>
                             <option disabled selected>Country</option>
                             <?php 
                                 foreach($country as $row):
@@ -114,26 +114,26 @@
                     <h3>Payment Details</h3>
 
                     <div class="form-floating mb-3">
-                        <input type="input" class="form-control" id="cardNumber" name="cardNumber" >
+                        <input type="input" class="form-control" id="cardNumber" name="cardNumber" required>
                         <label for="cardNumber">Card Number</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="input" class="form-control" id="accountHolder" name="accountHolder" >
+                        <input type="input" class="form-control" id="accountHolder" name="accountHolder" required>
                         <label for="accountHolder">Account Holder</label>
                     </div>
                     
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input type="input" class="form-control" id="cvv" name="cvv" >
+                                <input type="input" class="form-control" id="cvv" name="cvv" required>
                                 <label for="cvv">CVV</label>
                             </div>
                         </div>
                         
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input type="input" class="form-control" id="expirationDate" name="expirationDate" >
+                                <input type="input" class="form-control" id="expirationDate" name="expirationDate" required>
                                 <label for="expirationDate">Expiration Date</label>
                             </div>
                         </div>
@@ -141,7 +141,7 @@
                     
 
                     <div class="mb-3">
-                        <select class="form-select" id="bank" name="bank" >
+                        <select class="form-select" id="bank" name="bank" required>
                             <option disabled selected>Bank</option>
                             <?php 
                                 foreach($bank as $row):

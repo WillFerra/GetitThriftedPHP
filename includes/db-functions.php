@@ -1,5 +1,23 @@
 <?php
 
+function loadStreets($conn){
+    $sql = "SELECT * FROM Street;";
+
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        echo "Could not load Streets";
+        exit();
+    }
+
+    mysqli_stmt_execute($stmt);
+
+    $result = mysqli_stmt_get_result($stmt);
+
+    mysqli_stmt_close($stmt);
+
+    return $result;
+}
+
 function loadTowns($conn){
     $sql = "SELECT * FROM Town;";
 
@@ -177,4 +195,63 @@ function userExists($conn, $username, $email){
         $result = false;
         return $result;
     }
+}
+
+function loadUser($conn, $userId){
+    $sql = "SELECT * FROM Users WHERE id = {$userId};";
+
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        echo "Could not load Users";
+        exit();
+    }
+
+    mysqli_stmt_execute($stmt);
+
+    $result = mysqli_stmt_get_result($stmt);
+
+    mysqli_stmt_close($stmt);
+
+    // only returns database record if it exists
+    if ($row = mysqli_fetch_assoc($result)){
+        return $row;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+function updateUser($conn, $name, $surname, $doB, $email, $username, $password, $address, $street, $town, $country, $cardNumber, $accountHolder, $cvv, $expirationDate, $bank){
+    $sql = "UPDATE Users
+            SET name = ?,
+                surname = ?,
+                doB = ?,
+                email = ?,
+                username = ?,
+                password = ?,
+                address = ?, 
+                street = ?,
+                town = ?,
+                country = ?,
+                cardNumber = ?,
+                accountHolder = ?,
+                cvv = ?,
+                expirationDate = ?,
+                bank = ?
+            WHERE id = ?;";
+
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        header("location: ../index.php?error=stmtfailed");
+        exit();
+    }
+    
+    mysqli_stmt_bind_param($stmt, "sssssssiiiisisi", $name, $surname, $doB, $email, $username, $password, $address, $street, $town, $country, $cardNumber, $accountHolder, $cvv, $expirationDate, $bank);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    // redirect back to sign up page once registration is complete
+    header("location: ../profile.php?profile={$id}&success=true");
+    exit();
 }

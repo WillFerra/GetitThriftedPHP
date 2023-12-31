@@ -44,26 +44,43 @@
 
             <div class="row">
                 <div class="col-12 mb-3">
-                    <!-- Button -->
-                    <button type="submit" class="btn btn-primary w-100 p-2 fs-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Add to Cart
-                    </button>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Item Successfully Added to Cart</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-footer">
-                            <button onclick="location.href='products.php'" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continue Shopping</button>
-                            <button onclick="location.href='cart.php'" type="button" class="btn btn-primary">Go to Cart</button>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
+                <?php
+                    $alreadyInCart = FALSE;
+                    session_start();
+                    if(isset($_SESSION['cart'])){
+                        $cart = (array)$_SESSION['cart'];
+                        foreach ($cart as $productId) {
+                            if($productId == $product["id"]){
+                                $alreadyInCart = TRUE;
+                            }
+                        }
+
+                        if($alreadyInCart == TRUE)
+                        {
+                    ?>
+                            <button type="submit" class="btn btn-primary w-100 p-2 fs-5" disabled>Product already in Cart</button>
+                    <?php
+                        }
+                        else {
+                    ?>
+                        <form action="includes/addToCart-inc.php" method="post">
+                            <input type="hidden" name="productId" value=<?php echo $product["id"] ;?>>
+                            <button type="submit" class="btn btn-primary w-100 p-2 fs-5">Add to Cart</button>
+                        </form>
+                    <?php
+                        }
+                    }
+                    else{
+                    ?>
+                        <form action="includes/addToCart-inc.php" method="post">
+                            <input type="hidden" name="productId" value=<?php echo $product["id"] ;?>>
+                            <button type="submit" class="btn btn-primary w-100 p-2 fs-5">Add to Cart</button>
+                        </form>
+                    <?php
+                    }
+                    ?>
+                
                 </div>
             </div>
         </div>
@@ -73,7 +90,7 @@
 <br>
 <br>
 
-<div class="container-fluid">
+<!-- <div class="container-fluid">
     <h2>Related Products</h2>
 </div>
 
@@ -125,7 +142,7 @@
                 </div>
             </div>
         </main>
-    </div>
+    </div> -->
 
 
 

@@ -6,9 +6,6 @@
 
 
     $products = loadAllProducts($conn);
-
-    session_start();
-
 ?>
 
 <br>
