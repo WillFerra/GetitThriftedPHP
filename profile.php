@@ -16,8 +16,9 @@
         $users = loadUser($conn, $currentUser);
         $street = loadStreets($conn);
         $town = loadTowns($conn);
-        $countrie = loadCountry($conn);
+        $country = loadCountry($conn);
         $bank = loadBanks($conn);
+        $payment = loadPayments($conn);
     }
 
 ?>
