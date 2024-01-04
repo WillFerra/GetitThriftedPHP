@@ -11,6 +11,12 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
+    <style>
+        body {
+            padding-top: 50px;
+        }
+    </style>
+
     <body>
         <style>
             @font-face {
@@ -19,7 +25,7 @@
             }
         </style>
 
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
             <div class="container-fluid">
                 <img src="assets/logo.png" alt="Logo" width="70" height="50" class="d-inline-block align-text-top">
                 <a class="navbar-brand">Get It Thrifted</a>
@@ -27,7 +33,7 @@
         </nav>
         
         <!-- The sidebar -->
-        <div class="sidebar">
+        <div class="sidebar sideBarMargin">
             <a class="active" href="adminDashboard.php">Dashboard</a>
             <a href="adminProducts.php">Products</a>
             <a href="adminSellers.php">Page Roles</a>

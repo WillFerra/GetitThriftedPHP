@@ -390,3 +390,15 @@ body {
 .dropdown-center:hover .dropdown-menu {
     display: block;
 }
+
+.sideBarMargin{
+    margin-top: 20px;
+}
+
+.adminProductPadding{
+    margin-left: 50px;
+}
+
+.adminNewProductPadding{
+    margin-left: 100px;
+}

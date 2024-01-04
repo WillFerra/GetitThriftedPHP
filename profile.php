@@ -19,6 +19,11 @@
         $country = loadCountry($conn);
         $bank = loadBanks($conn);
         $payment = loadPayments($conn);
+
+        $userStreet = loadStreetById($conn, $users["streetId"]);
+        $userTown = loadTownById($conn, $userStreet["townId"]);
+        $userPayment = loadPaymentById($conn, $users["paymentId"]);
+        $userBank = loadBankById($conn, $userPayment["bankId"]);
     }
 
 ?>
@@ -114,7 +119,7 @@
                     <div class="form-floating mb-3">
                         <input type="input" class="form-control" 
                             id="street" name="street" required
-                            value="<?php echo $users["name"]; ?>">
+                            value="<?php echo $userStreet["name"]; ?>">
                         <label for="street">Street</label>
                     </div>
 
@@ -124,7 +129,11 @@
                             <?php 
                                 foreach($town as $row):
                                     ?>
-                                        <option value="<?php echo $row["id"]; ?>"><?php echo $row["name"]; ?></option>
+                                        <option 
+                                            value="<?php echo $row["id"]; ?>"
+                                            <?php if($row["id"] == $userStreet["townId"]){echo "selected";}?>>
+                                            <?php echo $row["name"]; ?>
+                                        </option>
                                     <?php
                                 endforeach;
                             ?>
@@ -137,7 +146,11 @@
                             <?php 
                                 foreach($country as $row):
                                     ?>
-                                        <option value="<?php echo $row["id"]; ?>"><?php echo $row["name"]; ?></option>
+                                        <option 
+                                            value="<?php echo $row["id"]; ?>"
+                                            <?php if($row["id"] == $userTown["countryId"]){echo "selected";}?>>
+                                            <?php echo $row["name"]; ?>
+                                        </option>
                                     <?php
                                 endforeach;
                             ?>
@@ -149,29 +162,37 @@
                 <div class="border p-3 mb-3">
                     <h3>Payment Details</h3>
 
+<!-- add input type='hidden' with paymentId-->
+
                     <div class="form-floating mb-3">
                         <input type="input" class="form-control" 
                             id="cardNumber" name="cardNumber" required
-                            value="<?php echo $users["name"]; ?>">
+                            value="<?php echo $userPayment["cardNumber"]; ?>">
                         <label for="cardNumber">Card Number</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="input" class="form-control" id="accountHolder" name="accountHolder" required>
+                        <input type="input" class="form-control" 
+                            id="accountHolder" name="accountHolder" required
+                            value="<?php echo $userPayment["accountHolder"]; ?>">
                         <label for="accountHolder">Account Holder</label>
                     </div>
                     
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input type="input" class="form-control" id="cvv" name="cvv" required>
+                                <input type="input" class="form-control" 
+                                    id="cvv" name="cvv" required
+                                    value="<?php echo $userPayment["cvv"]; ?>">
                                 <label for="cvv">CVV</label>
                             </div>
                         </div>
                         
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input type="input" class="form-control" id="expirationDate" name="expirationDate" required>
+                                <input type="input" class="form-control" 
+                                    id="expirationDate" name="expirationDate" required
+                                    value="<?php echo $userPayment["expirationDate"]; ?>">
                                 <label for="expirationDate">Expiration Date</label>
                             </div>
                         </div>
@@ -184,7 +205,11 @@
                             <?php 
                                 foreach($bank as $row):
                                     ?>
-                                        <option value="<?php echo $row["id"]; ?>"><?php echo $row["name"]; ?></option>
+                                        <option 
+                                            value="<?php echo $row["id"]; ?>"
+                                            <?php if($row["id"] == $userPayment["bankId"]){echo "selected";}?>>
+                                            <?php echo $row["name"]; ?>
+                                        </option>
                                     <?php
                                 endforeach;
                             ?>
