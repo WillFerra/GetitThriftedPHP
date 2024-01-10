@@ -36,12 +36,48 @@ function loadSellers($conn){
     return $result;
 }
 
+function loadBuyers($conn){
+    $sql = "SELECT * FROM Users WHERE roleId = 1;";
+
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        echo "Could not load Sellers";
+        exit();
+    }
+
+    mysqli_stmt_execute($stmt);
+
+    $result = mysqli_stmt_get_result($stmt);
+
+    mysqli_stmt_close($stmt);
+
+    return $result;
+}
+
+function loadRequested($conn){
+    $sql = "SELECT * FROM Users WHERE roleId = 3;";
+
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        echo "Could not load Sellers";
+        exit();
+    }
+
+    mysqli_stmt_execute($stmt);
+
+    $result = mysqli_stmt_get_result($stmt);
+
+    mysqli_stmt_close($stmt);
+
+    return $result;
+}
+
 function loadSizes($conn){
     $sql = "SELECT * FROM Size;";
 
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)){
-        echo "Could not load Streets";
+        echo "Could not load Sizes";
         exit();
     }
 
@@ -124,6 +160,7 @@ function loadPayments($conn){
     mysqli_stmt_close($stmt);
 
     return $result;
+
 }
 
 function createUser($conn, $name, $surname, $doB, $email, $username, $password, $address, $street, $town, $country, $cardNumber, $accountHolder, $cvv, $expirationDate, $bank){
@@ -275,31 +312,31 @@ function loadUser($conn, $userId){
     }
 }
 
-function updateUser($conn, $name, $surname, $doB, $email, $username, $password, $address, $street, $town, $country, $cardNumber, $accountHolder, $cvv, $expirationDate, $bank){
+function updateDetails($conn, $name, $surname, $doB, $email, $username, $password){
     
-    $sql = "UPDATE Payment 
-        SET bankId = ?,
-            cardNumber = ?, 
-            accountHolder = ?,
-            cvv = ?, 
-            expirationDate = ?
-        WHERE id = ? ";
-        $stmt = mysqli_stmt_init($conn);
-    mysqli_stmt_prepare($stmt, $sql);
-    $bankId = (int)$bank;
-    $cvvNo = (int)$cvv;
-    mysqli_stmt_bind_param($stmt, "issisi", $bankId, $cardNumber, $accountHolder, $cvvNo, $expirationDate, $paymentId);
-    $result = mysqli_stmt_execute($stmt);
+    // $sql = "UPDATE Payment 
+    //     SET bankId = ?,
+    //         cardNumber = ?, 
+    //         accountHolder = ?,
+    //         cvv = ?, 
+    //         expirationDate = ?
+    //     WHERE id = ? ";
+    //     $stmt = mysqli_stmt_init($conn);
+    // mysqli_stmt_prepare($stmt, $sql);
+    // $bankId = (int)$bank;
+    // $cvvNo = (int)$cvv;
+    // mysqli_stmt_bind_param($stmt, "issisi", $bankId, $cardNumber, $accountHolder, $cvvNo, $expirationDate, $paymentId);
+    // $result = mysqli_stmt_execute($stmt);
 
-    $sql = "UPDATE Street 
-        SET name = ?, 
-            townId = ? 
-        WHERE streetId = ?";
-        $stmt = mysqli_stmt_init($conn);
-    mysqli_stmt_prepare($stmt, $sql);
-    $steetId = (int)$street;
-    mysqli_stmt_bind_param($stmt, "si", $street, $townId);
-    mysqli_stmt_execute($stmt);
+    // $sql = "UPDATE Street 
+    //     SET name = ?, 
+    //         townId = ? 
+    //     WHERE streetId = ?";
+    //     $stmt = mysqli_stmt_init($conn);
+    // mysqli_stmt_prepare($stmt, $sql);
+    // $steetId = (int)$street;
+    // mysqli_stmt_bind_param($stmt, "si", $street, $townId);
+    // mysqli_stmt_execute($stmt);
         
     $sql = "UPDATE Users
             SET name = ?,
@@ -436,4 +473,86 @@ function loadBankById($conn, $id){
     mysqli_stmt_close($stmt);
 
     return $result->fetch_assoc();
+}
+
+function loadSizeById($conn, $id){
+    $sql = "SELECT * FROM Size WHERE id = {$id};";
+
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        echo "Could not load Banks";
+        exit();
+    }
+
+    mysqli_stmt_execute($stmt);
+
+    $result = mysqli_stmt_get_result($stmt);
+
+    mysqli_stmt_close($stmt);
+
+    return $result->fetch_assoc();
+}
+
+function loadSellerById($conn, $id){
+    $sql = "SELECT * FROM Users WHERE id = {$id};";
+
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        echo "Could not load Banks";
+        exit();
+    }
+
+    mysqli_stmt_execute($stmt);
+
+    $result = mysqli_stmt_get_result($stmt);
+
+    mysqli_stmt_close($stmt);
+
+    return $result->fetch_assoc();
+}
+
+function updateProduct($conn, $name, $price, $sizeId, $description, $stockQty, $imgLink, $sellerId){
+
+    $sql = "UPDATE Products
+            SET name = ?,
+                price = ?,
+                sizeId = ?,
+                description = ?,
+                stockQty = ?,
+                imgLink = ?,
+                sellerId = ?, 
+            WHERE id = ?;";
+
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        header("location: ../adminProducts.php?error=stmtfailed");
+        exit();
+    }
+    
+    mysqli_stmt_bind_param($stmt, "sfisisi", $name, $price, $sizeId, $description, $stockQty, $imgLink, $sellerId);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    // redirect back to sign up page once registration is complete
+    header("location: ../adminProducts.php");
+    exit();
+}
+
+function sellerRequest($conn, $username, $password, $why, $productName, $description, $sellingPrice, $size, $imageLink){
+
+    $sql = "INSERT INTO Requests
+        (username, password, why, productName, description, sellingPrice, size, imageLink)
+        VALUES(?,?,?,?,?,?,?,?);";
+
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        header("location: ../becomeSeller.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "sssssfss", $username, $password, $why, $productName, $description, $sellingPrice, $size, $imageLink);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    // redirect back to sign up page once registration is complete
+    header("location: ../becomeSeller.php?success=true");
 }

@@ -37,6 +37,15 @@
             <a class="active" href="adminDashboard.php">Dashboard</a>
             <a href="adminProducts.php">Products</a>
             <a href="adminSellers.php">Page Roles</a>
+            
+            <br>
+            <br>
+            
+            <div>
+                <form action="includes/logout-inc.php">
+                    <button type="submit" class="btn btn-danger w-100 p-2 fs-5">Logout</button>
+                </form>
+            </div>
         </div>
 
         

@@ -1,84 +1,81 @@
 <?php
-    include 'includes/adminHeader.php';
+    require_once "includes/dbh.php";
+    require_once "includes/db-functions.php";
+    
+    include "includes/adminheader.php";
+
+    $seller = loadSellers($conn);
+    $buyers = loadbuyers($conn);
+    $requested = loadRequested($conn);
+
 ?>
 
 <br>
 <br>
 
 <div class="col-12">
-    <main?>
+    <main>
         <div class="container">
             <div class="row mb-4">
                 <div class="col-1">
                 </div>
                 <div class="col-11">
-                    <h3>Admin</h3>
-                    <ul class="product-list">
-                        <li class="product-item">
-                            <span>Will Ferrante</span>                            
-                        </li>
-                    </ul>
+                    <h3>Authorized Sellers</h3>
 
-                    <br>
-
-                    <h3>Moderators</h3>
-                    <ul class="product-list">
-                        <li class="product-item">
-                            <span>Joe Borg</span>  
-                            <button class="edit-button">Edit</button>                          
-                        </li>
-                        <li class="product-item">
-                            <span>Ryan Galea</span>  
-                            <button class="edit-button">Edit</button>                          
-                        </li>
-                    </ul>
-
-                    <br>
-
-                    <h3>Sellers</h3>
-                    <ul class="product-list">
-                        <li class="product-item">
-                            <span>Matt Bartolo</span>
-                            <span>Products Online: 5</span>  
-                            <span>Items Previously Sold: 10</span>  
-                            <span>
-                                <button class="edit-button">Edit Role</button> 
-                                <button class="edit-button">Remove Seller</button> 
-                            </span>         
-                        </li>
-                        <li class="product-item">
-                            <span>Brandon Vella</span>  
-                            <span>Products Online: 10</span>  
-                            <span>Items Previously Sold: 19</span>  
-                            <span>
-                                <button class="edit-button">Edit Role</button> 
-                                <button class="edit-button">Remove Seller</button> 
-                            </span>                          
-                        </li>
-                        <li class="product-item">
-                            <span>Stacy Bonnici</span> 
-                            <span>Products Online: 8</span>  
-                            <span>Items Previously Sold: 4</span>   
-                            <span>
-                                <button class="edit-button">Edit Role</button> 
-                                <button class="edit-button">Remove Seller</button> 
-                            </span>                       
-                        </li>
-                        <li class="product-item">
-                            <span>Victor Mifsud</span> 
-                            <span>Products Online: 3</span>  
-                            <span>Items Previously Sold: 4</span>   
-                            <span>
-                                <button class="edit-button">Edit Role</button> 
-                                <button class="edit-button">Remove Seller</button> 
-                            </span>                          
-                        </li>
-                    </ul>
+                    <?php 
+                    foreach($seller as $row):
+                        ?>
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <li class="product-item">
+                                    <h6><?php echo $row["name"]?></h6>
+                                    <button class="edit-button">Edit</button>                          
+                                </li>
+                            </div>
+                        </div>
+                        <?php
+                    endforeach;
+                    ?>
 
                     <br>
 
                     <h3>Seller Requests</h3>
-                    <ul class="product-list">
+                    
+                    <?php 
+                    foreach($requested as $row):
+                        ?>
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <li class="product-item">
+                                    <h6><?php echo $row["name"]?></h6>
+                                    <button class="edit-button">Edit</button>                          
+                                </li>
+                            </div>
+                        </div>
+                        <?php
+                    endforeach;
+                    ?>
+                    
+                    <br>
+
+                    <h3>Users</h3>
+                    
+                    <?php 
+                    foreach($buyers as $row):
+                        ?>
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <li class="product-item">
+                                    <h6><?php echo $row["name"]?></h6>
+                                    <button class="edit-button">Edit</button>                          
+                                </li>
+                            </div>
+                        </div>
+                        <?php
+                    endforeach;
+                    ?>
+                    
+                    <!-- <ul class="product-list">
                         <li class="product-item">
                             <span>Chris Aguis</span>
                             <span>Date Requested: 21.11.23</span>
@@ -95,7 +92,7 @@
                                 <button class="edit-button">Delete Request</button> 
                             </span>                        
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
         </div>

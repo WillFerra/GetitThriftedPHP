@@ -38,7 +38,8 @@
                                         <h5 class="card-title"><?php echo $prod["name"]?></h5>
                                         <h6 class="card-subtitle mb-2 text-muted"><?php echo "€ ".$prod["price"];?></h6>
                                         <p><?php echo $prod["description"];?></p>
-                                        <a href="productItem.php?product=<?php echo $prod["id"] ;?>" class="btn btn-primary w-100 mb-3" role="button">Edit Details</a>
+                                        <a href="adminProductDetails.php?product=<?php echo $prod["id"] ;?>" class="btn btn-primary w-100 mb-3" role="button">Edit Details</a>
+                                        
 
                                         <form action="includes/deleteProduct-inc.php">
                                             <input type="hidden" id="deleteProdId" name="prodId" value="<?php echo $prod["id"]; ?>">
@@ -58,8 +59,6 @@
         </div>
     </main>
 </div>
-
-
 
 <?php
     include 'includes/adminFooter.php';
