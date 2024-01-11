@@ -3,6 +3,8 @@
     require_once "includes/db-functions.php";
     
     include "includes/header.php";
+    
+    session_start();
 
     if(isset($_GET["product"])){
         $productId = $_GET["product"];
@@ -13,6 +15,7 @@
         }
 
         $product = loadProduct($conn, $productId);
+        $size = loadSizeById($conn, $productId);
     }
 ?>
 
@@ -37,7 +40,7 @@
                 <br>
                 <h5><?php echo "Price: € ".$product["price"]?></h5>
                 <br>
-                <h5><?php echo "Size: ".$product["sizeId"]?></h5>
+                <h5><?php echo "Size: ".$size["name"]?></h5>
                 <br>
                 <h5><?php echo "Quantity in Stock: ".$product["stockQty"]?></h5>
             </div>
@@ -47,7 +50,7 @@
 
                 <?php
                     $alreadyInCart = FALSE;
-                    session_start();
+                    
                     if(isset($_SESSION['cart'])){
                         $cart = (array)$_SESSION['cart'];
                         foreach ($cart as $productId) {

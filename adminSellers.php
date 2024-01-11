@@ -40,15 +40,16 @@
                     <br>
 
                     <h3>Seller Requests</h3>
-                    
                     <?php 
                     foreach($requested as $row):
                         ?>
                         <div class="row">
                             <div class="col-12 mb-3">
                                 <li class="product-item">
-                                    <h6><?php echo $row["name"]?></h6>
-                                    <button class="edit-button">Edit</button>                          
+                                    <h6><?php echo $row["username"]?></h6>
+                                    <h6><?php echo $row["requestDate"]?></h6>
+                                    <button class="edit-button">Approve</button>   
+                                    <button class="edit-button">Deny</button>                          
                                 </li>
                             </div>
                         </div>
@@ -67,7 +68,9 @@
                             <div class="col-12 mb-3">
                                 <li class="product-item">
                                     <h6><?php echo $row["name"]?></h6>
-                                    <button class="edit-button">Edit</button>                          
+                                    <h6><?php echo $row["username"]?></h6>
+                                    <h6><?php echo $row["email"]?></h6>
+                                    <!-- <button class="edit-button">Edit</button> -->
                                 </li>
                             </div>
                         </div>

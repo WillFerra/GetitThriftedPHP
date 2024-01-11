@@ -36,6 +36,8 @@
                         <div class="border p-3 mb-3">
                             <h3>Product Details</h3>
 
+                            <input type="hidden" id="productId" name="productId" value="<?php echo $product["id"]; ?>">
+
                             <div class="form-floating mb-3">
                                 <input type="input" class="form-control" 
                                     id="name" name="name" required 

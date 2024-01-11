@@ -9,6 +9,7 @@ if(empty($_POST)){
     exit();
 }
 else{
+    $userId = $_POST["userId"];
     $username = $_POST["username"];
     $password = $_POST["password"];
     $why = $_POST["why"];
@@ -31,7 +32,7 @@ else{
     $description, 
     $sellingPrice, 
     $size, 
-    $imgLink
+    $imageLink
 ]);
 
     if ($emptyInputs){
@@ -39,5 +40,5 @@ else{
         exit();
     }
 
-    sellerRequest($conn, $username, $password, $why, $productName, $description, $sellingPrice, $size, $imageLink);
+    sellerRequest($conn, $userId, $username, $password, $why, $productName, $description, $sellingPrice, $size, $imageLink);
 }

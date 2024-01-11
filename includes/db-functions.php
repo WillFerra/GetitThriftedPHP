@@ -55,11 +55,11 @@ function loadBuyers($conn){
 }
 
 function loadRequested($conn){
-    $sql = "SELECT * FROM Users WHERE roleId = 3;";
+    $sql = "SELECT * FROM Requests";
 
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)){
-        echo "Could not load Sellers";
+        echo "Could not load Requests";
         exit();
     }
 
@@ -312,50 +312,73 @@ function loadUser($conn, $userId){
     }
 }
 
-function updateDetails($conn, $name, $surname, $doB, $email, $username, $password){
+function updateUserDetails($conn, $id, $name, $surname, $doB, $email, $username, $password){
     
-    // $sql = "UPDATE Payment 
-    //     SET bankId = ?,
-    //         cardNumber = ?, 
-    //         accountHolder = ?,
-    //         cvv = ?, 
-    //         expirationDate = ?
-    //     WHERE id = ? ";
-    //     $stmt = mysqli_stmt_init($conn);
-    // mysqli_stmt_prepare($stmt, $sql);
-    // $bankId = (int)$bank;
-    // $cvvNo = (int)$cvv;
-    // mysqli_stmt_bind_param($stmt, "issisi", $bankId, $cardNumber, $accountHolder, $cvvNo, $expirationDate, $paymentId);
-    // $result = mysqli_stmt_execute($stmt);
-
-    // $sql = "UPDATE Street 
-    //     SET name = ?, 
-    //         townId = ? 
-    //     WHERE streetId = ?";
-    //     $stmt = mysqli_stmt_init($conn);
-    // mysqli_stmt_prepare($stmt, $sql);
-    // $steetId = (int)$street;
-    // mysqli_stmt_bind_param($stmt, "si", $street, $townId);
-    // mysqli_stmt_execute($stmt);
-        
     $sql = "UPDATE Users
             SET name = ?,
                 surname = ?,
                 dateOfBirth = ?,
                 email = ?,
                 username = ?,
-                password = ?,
-                address = ?, 
+                password = ?
+            WHERE id = ?;";
+
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        header("location: ../profile.php?error=stmtfailed");
+        exit();
+    }
+    
+    mysqli_stmt_bind_param($stmt, "sssssss", $name, $surname, $doB, $email, $username, $password, $id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    // redirect back to sign up page once registration is complete
+    header("location: ../profile.php?profile={$id}&success=true");
+    exit();
+}
+
+function updateUserResidence($conn, $address, $street, $id){
+        
+    // update the address
+    $sql = "UPDATE Users
+            SET address = ?,
                 streetId = ?
             WHERE id = ?;";
 
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)){
-        header("location: ../index.php?error=stmtfailed");
+        header("location: ../profile.php?error=stmtfailed");
         exit();
     }
     
-    mysqli_stmt_bind_param($stmt, "sssssss", $name, $surname, $doB, $email, $username, $password, $address, $street);
+    mysqli_stmt_bind_param($stmt, "sis", $address, $steetId, $id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    // redirect back to sign up page once registration is complete
+    header("location: ../profile.php?profile={$id}&success=true");
+    exit();
+}
+
+function updateUserPayment($conn, $cardNumber, $accountHolder, $cvv, $expirationDate, $bankId, $id){
+        
+    // update the payment
+    $sql = "UPDATE Payment
+            SET cardNumber = ?,
+            accountHolder = ?,
+            cvv = ?,
+            expirationDate = ?,
+            bankId = ?
+            WHERE id = ?;";
+
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        header("location: ../profile.php?error=stmtfailed");
+        exit();
+    }
+    
+    mysqli_stmt_bind_param($stmt, "ssiiis", $cardNumber, $accountHolder, $cvv, $expirationDate, $bankId, $id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
@@ -480,7 +503,7 @@ function loadSizeById($conn, $id){
 
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)){
-        echo "Could not load Banks";
+        echo "Could not load Sizes";
         exit();
     }
 
@@ -511,7 +534,7 @@ function loadSellerById($conn, $id){
     return $result->fetch_assoc();
 }
 
-function updateProduct($conn, $name, $price, $sizeId, $description, $stockQty, $imgLink, $sellerId){
+function updateProduct($conn, $name, $price, $sizeId, $description, $stockQty, $imgLink, $sellerId, $id){
 
     $sql = "UPDATE Products
             SET name = ?,
@@ -520,7 +543,7 @@ function updateProduct($conn, $name, $price, $sizeId, $description, $stockQty, $
                 description = ?,
                 stockQty = ?,
                 imgLink = ?,
-                sellerId = ?, 
+                sellerId = ?
             WHERE id = ?;";
 
     $stmt = mysqli_stmt_init($conn);
@@ -529,7 +552,7 @@ function updateProduct($conn, $name, $price, $sizeId, $description, $stockQty, $
         exit();
     }
     
-    mysqli_stmt_bind_param($stmt, "sfisisi", $name, $price, $sizeId, $description, $stockQty, $imgLink, $sellerId);
+    mysqli_stmt_bind_param($stmt, "sdisisis", $name, $price, $sizeId, $description, $stockQty, $imgLink, $sellerId, $id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
@@ -538,21 +561,38 @@ function updateProduct($conn, $name, $price, $sizeId, $description, $stockQty, $
     exit();
 }
 
-function sellerRequest($conn, $username, $password, $why, $productName, $description, $sellingPrice, $size, $imageLink){
+function sellerRequest($conn, $userId, $username, $password, $why, $productName, $description, $sellingPrice, $size, $imageLink){
+
+    $stmt = mysqli_stmt_init($conn);
 
     $sql = "INSERT INTO Requests
-        (username, password, why, productName, description, sellingPrice, size, imageLink)
-        VALUES(?,?,?,?,?,?,?,?);";
+        (userId, username, password, why, productName, description, sellingPrice, size, imageLink, statusId, requestDate)
+        VALUES(?,?,?,?,?,?,?,?,?,?,?);";
 
     if(!mysqli_stmt_prepare($stmt, $sql)){
         header("location: ../becomeSeller.php?error=stmtfailed");
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "sssssfss", $username, $password, $why, $productName, $description, $sellingPrice, $size, $imageLink);
+    $statusId = 1;
+    $requestDate = date("Y-m-d");
+
+    mysqli_stmt_bind_param($stmt, "isssssdssis", $userId, $username, $password, $why, $productName, $description, $sellingPrice, $size, $imageLink, $statusId, $requestDate);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
-    // redirect back to sign up page once registration is complete
+    // redirect back to sign up page once request is complete
+    // <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    //     <div class="toast-header">
+            
+    //         <strong class="me-auto">Seller Request</strong>
+    //         <small>Just now</small>
+    //         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    //     </div>
+    //     <div class="toast-body">
+    //         Request Successful.
+    //     </div>
+    // </div>
+    // <?php
     header("location: ../becomeSeller.php?success=true");
 }

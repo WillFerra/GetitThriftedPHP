@@ -4,6 +4,8 @@
     require_once "includes/dbh.php";
     require_once "includes/db-functions.php";
     include 'includes/header.php';
+
+    session_start();
 ?>
 
 <div class="row">
@@ -20,6 +22,9 @@
                 <div class="col-8">
                     <!-- Personal Details -->
                     <div class="border p-3 mb-3">
+
+                        <input type="hidden" id="userId" name="userId" value="<?php echo $_SESSION['userId'] ?>">
+
                         <h3>Your Details</h3>
 
                         <div class="form-floating mb-3">
@@ -33,14 +38,14 @@
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input type="input" class="form-control" id="whySell" name="whySell" required>
+                            <input type="input" class="form-control" id="why" name="why" required>
                             <label for="password">Why do you want to sell with us?</label>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-4">
-                    <!-- Residence -->
+                    <!-- Product -->
                     <div class="border p-3 mb-3">
                         <h3>Product</h3>
 
@@ -55,7 +60,7 @@
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input type="input" class="form-control" id="price" name="price" required>
+                            <input type="input" class="form-control" id="sellingPrice" name="sellingPrice" required>
                             <label for="price">Selling Price</label>
                         </div>
 

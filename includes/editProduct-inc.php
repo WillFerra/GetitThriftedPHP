@@ -9,6 +9,8 @@ if(empty($_POST)){
     exit();
 }
 else{
+
+    $id = $_POST["productId"];
     $name = $_POST["name"];
     $price = $_POST["price"];
     $sizeId = $_POST["sizeId"];
@@ -17,5 +19,5 @@ else{
     $imgLink = $_POST["imgLink"];
     $sellerId = $_POST["sellerId"];
 
-    updateProduct($conn, $name, $price, $sizeId, $description, $stockQty, $imgLink, $sellerId);
+    updateProduct($conn, $name, $price, $sizeId, $description, $stockQty, $imgLink, $sellerId, $id);
 }

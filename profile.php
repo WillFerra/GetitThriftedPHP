@@ -53,6 +53,8 @@
                     <div class="border p-3 mb-3">
                         <h3>Personal Details</h3>
 
+                        <input type="hidden" id="userId" name="userId" value="<?php echo $users["id"]; ?>">
+
                         <div class="form-floating mb-3">
                             <input type="input" class="form-control" 
                                 id="name" name="name" required 
@@ -113,9 +115,12 @@
 
             <div class="col-4">
                 <form action="includes/updateResidence-inc.php" method="POST">
+                
                     <!-- Residence -->
                     <div class="border p-3 mb-3">
                         <h3>Residence</h3>
+
+                        <input type="hidden" id="userId" name="userId" value="<?php echo $users["id"]; ?>">
 
                         <div class="form-floating mb-3">
                             <input type="input" class="form-control" 
@@ -124,11 +129,21 @@
                             <label for="address">Address</label>
                         </div>
 
-                        <div class="form-floating mb-3">
-                            <input type="input" class="form-control" 
-                                id="street" name="street" required
-                                value="<?php echo $userStreet["name"]; ?>">
-                            <label for="street">Street</label>
+                        <div class="mb-3">
+                            <select class="form-select" id="street" name="street" required>
+                                <option disabled selected>Street</option>
+                                <?php 
+                                    foreach($street as $row):
+                                        ?>
+                                            <option 
+                                                value="<?php echo $row["id"]; ?>"
+                                                <?php if($row["id"] == $users["streetId"]){echo "selected";}?>>
+                                                <?php echo $row["name"]; ?>
+                                            </option>
+                                        <?php
+                                    endforeach;
+                                ?>
+                            </select>
                         </div>
 
                         <div class="mb-3">
@@ -179,7 +194,7 @@
                     <div class="border p-3 mb-3">
                         <h3>Payment Details</h3>
 
-                        <!-- add input type='hidden' with paymentId-->
+                        <input type="hidden" id="userId" name="userId" value="<?php echo $users["paymentId"]; ?>">
 
                         <div class="form-floating mb-3">
                             <input type="input" class="form-control" 

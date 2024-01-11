@@ -6,6 +6,7 @@
     
     include "includes/header.php";
 
+    $street = loadStreets($conn);
     $town = loadTowns($conn);
     $country = loadCountry($conn);
     $bank = loadBanks($conn);
@@ -74,12 +75,20 @@
 
                     <div class="form-floating mb-3">
                         <input type="input" class="form-control" id="address" name="address"required>
-                        <label for="address">Address</label>
+                        <label for="address">House number and House Name</label>
                     </div>
 
-                    <div class="form-floating mb-3">
-                        <input type="input" class="form-control" id="street" name="street" required>
-                        <label for="street">Street</label>
+                    <div class="mb-3">
+                        <select class="form-select" id="street" name="street" required>
+                            <option disabled selected>Street</option>
+                            <?php 
+                                foreach($street as $row):
+                                    ?>
+                                        <option value="<?php echo $row["id"]; ?>"><?php echo $row["name"]; ?></option>
+                                    <?php
+                                endforeach;
+                            ?>
+                        </select>
                     </div>
 
                     <div class="mb-3">
