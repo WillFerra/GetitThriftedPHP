@@ -5,6 +5,8 @@
     require_once "includes/db-functions.php";
     include 'includes/header.php';
 
+    $size = loadSizes($conn);
+
     session_start();
 ?>
 
@@ -65,8 +67,16 @@
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input type="input" class="form-control" id="size" name="size" required>
-                            <label for="size">Size</label>
+                            <select class="form-select" id="size" name="size" required>
+                                <option disabled selected>Size</option>
+                                <?php 
+                                    foreach($size as $row):
+                                        ?>
+                                            <option value="<?php echo $row["id"]; ?>"><?php echo $row["name"]; ?></option>
+                                        <?php
+                                    endforeach;
+                                ?>
+                            </select>
                         </div>
 
                         <div class="form-floating mb-3">

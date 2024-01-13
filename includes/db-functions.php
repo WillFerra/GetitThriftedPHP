@@ -426,6 +426,23 @@ function deleteProduct($conn, $id){
     exit();
 }
 
+function deleteRequest($conn, $id){
+    $sql = "DELETE FROM Requests WHERE id = ?;";
+
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        echo "Could not delete request";
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    header("location: ../adminSellers.php");
+    exit();
+}
+
 function loadStreetById($conn, $id){
     $sql = "SELECT * FROM Street WHERE id = {$id};";
 
@@ -595,4 +612,46 @@ function sellerRequest($conn, $userId, $username, $password, $why, $productName,
     // </div>
     // <?php
     header("location: ../becomeSeller.php?success=true");
+}
+
+function approveRequest($conn, $id, $userId){
+    $sql = "UPDATE Users SET roleId = 2 WHERE id = ?";
+
+    $stmt = mysqli_prepare($conn, $sql);
+    if (!$stmt) {
+        die("Error preparing statement: " . mysqli_error($con));
+    }
+
+    mysqli_stmt_bind_param($stmt, "i", $userId);
+
+    if (mysqli_stmt_execute($stmt)) {
+        // User role updated successfully, now delete the request
+        deleteRequest($conn, $id);
+        // header("location:adminSellers.php");
+    } else {
+        echo "Error updating user role: " . mysqli_stmt_error($stmt);
+    }
+
+    mysqli_stmt_close($stmt);
+}
+
+function removeSeller($conn, $id){
+    $sql = "UPDATE Users SET roleId = 1 WHERE id = ?";
+
+    $stmt = mysqli_prepare($conn, $sql);
+    if (!$stmt) {
+        die("Error preparing statement: " . mysqli_error($con));
+    }
+
+    mysqli_stmt_bind_param($stmt, "i", $id);
+
+    if (mysqli_stmt_execute($stmt)) {
+        // User role updated successfully
+        header("location:../adminSellers.php");
+        exit();
+    } else {
+        echo "Error updating user role: " . mysqli_stmt_error($stmt);
+    }
+
+    mysqli_stmt_close($stmt);
 }
