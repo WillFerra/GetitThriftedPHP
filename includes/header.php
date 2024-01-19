@@ -66,33 +66,5 @@
                     <button type="button" class="btn btn-outline-success" type="submit">Search</button>
                 </a>
             </form>
-
-            <!-- <form class="d-flex" role="search"  method="GET">
-                <input class="form-control me-2" type="search" name="query" placeholder="Search" aria-label="Search">
-                <button type="submit" class="btn btn-outline-success">Search</button>
-            </form> -->
-
-            <!-- <?php
-            // if ($_SERVER["REQUEST_METHOD"] == "GET") {
-            //     // Get the search query from the form
-            //     $searchQuery = isset($_GET['query']) ? $_GET['query'] : '';
-
-            //     // Perform your search logic here (e.g., query a database, search through files, etc.)
-            //     $sql = "SELECT * FROM Products WHERE name LIKE '%$searchQuery%' OR description LIKE '%$searchQuery%'";
-            //     $result = $conn->query($sql);
-
-            //     if ($result->num_rows > 0) {
-            //         // Display the search results
-            //         echo "<h2>Search Results:</h2>";
-            //         while ($row = $result->fetch_assoc()) {
-            //             echo "<p>Product Name: " . htmlspecialchars($row['productName']) . "</p>";
-            //             echo "<p>Description: " . htmlspecialchars($row['description']) . "</p>";
-            //         }
-            //     } else {
-            //         echo "No results found.";
-            //     }
-            // }
-            ?> -->
-
         </div>
     </nav>
